@@ -43,10 +43,9 @@ func makeCall(req *RequestObject, ch chan string, cb func()) {
 	if len(req.childRequests) > 0 {
 		respArr = append(respArr, "(")
 	}
-	for i := range req.childRequests {
+	for i := 0; i < len(req.childRequests); i++ {
 		str1 := <-currCh
 		respArr = append(respArr, str1)
-		fmt.Println("got request", i, str1)
 	}
 	if len(req.childRequests) > 0 {
 		respArr = append(respArr, ")")
